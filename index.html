@@ -126,21 +126,11 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
-            font-weight: 800;
-            font-size: 22px;
-            color: var(--gray-900);
-            letter-spacing: -0.5px;
         }
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), #4D8FFF);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
+        .logo img {
+            height: 44px;
+            width: auto;
+            transition: var(--transition);
         }
         .nav {
             display: flex;
@@ -731,9 +721,6 @@
             color: var(--gray-500);
             line-height: 1.5;
         }
-        .step-connector {
-            display: none;
-        }
 
         /* BENEFITS */
         .benefits-grid {
@@ -881,10 +868,19 @@
             flex-wrap: wrap;
             gap: 24px;
         }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-brand img {
+            height: 40px;
+            width: auto;
+        }
         .footer-brand p {
             color: #94A3B8;
             font-size: 14px;
-            margin-top: 8px;
+            margin-top: 4px;
         }
         .footer-contact {
             display: flex;
@@ -1058,8 +1054,7 @@
     <header class="header" id="header">
         <div class="header-inner">
             <a href="#" class="logo">
-                <div class="logo-icon"><i class="fas fa-building"></i></div>
-                EVO UPI
+                <img src="https://i.ibb.co/KQjpy0P/logo-condoup.png" alt="CondoUp">
             </a>
             <nav class="nav">
                 <a href="#recursos" class="nav-link">Recursos</a>
@@ -1375,10 +1370,7 @@
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
-                <a href="#" class="logo" style="color:white;">
-                    <div class="logo-icon"><i class="fas fa-building"></i></div>
-                    EVO UPI
-                </a>
+                <img src="https://i.ibb.co/KQjpy0P/logo-condoup.png" alt="CondoUp">
                 <p>Tecnologia para transformar a gestão condominial.</p>
             </div>
             <div class="footer-contact">
