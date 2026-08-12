@@ -1704,6 +1704,211 @@
         .footer-bottom { flex-direction:column; justify-content:center; gap:14px; margin-top:42px; text-align:center; }
         .footer-bottom > div { justify-content:center; flex-wrap:wrap; }
         @media(max-width:768px){.hero{min-height:auto}.footer-contact{flex-direction:column}}
+        /* CORREÇÃO RESPONSIVA DEFINITIVA */
+@media (max-width: 1024px) {
+    .hero {
+        width: 100%;
+        min-height: auto;
+        padding: 120px 24px 70px;
+        grid-template-columns: 1fr;
+        gap: 38px;
+        text-align: center;
+    }
+
+    .hero-content {
+        order: 1;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .hero-visual {
+        order: 2;
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+    .hero-content p {
+        max-width: 680px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-logo-big {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-inner {
+        height: 74px;
+        padding: 0 18px;
+        gap: 10px;
+    }
+
+    .logo-img {
+        width: 46px;
+        height: 46px;
+    }
+
+    .header-actions {
+        gap: 12px;
+        margin-left: auto;
+    }
+
+    .header-actions .btn-entrar {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        font-size: 25px;
+    }
+
+    .hero {
+        padding: 112px 20px 58px;
+        gap: 34px;
+        background:
+            radial-gradient(
+                circle at 50% 28%,
+                rgba(59, 130, 246, 0.18),
+                transparent 42%
+            ),
+            linear-gradient(
+                rgba(4, 14, 28, 0.91),
+                rgba(4, 14, 28, 0.84)
+            ),
+            url('condominio-conruja.png') center/cover no-repeat;
+    }
+
+    .hero-content h1 {
+        width: 100%;
+        max-width: 620px;
+        margin: 0 auto 20px;
+        font-size: clamp(31px, 8vw, 42px);
+        line-height: 1.12;
+        letter-spacing: -1px;
+    }
+
+    .hero-content p {
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 14px;
+    }
+
+    .hero-buttons {
+        width: 100%;
+        margin-top: 28px;
+        gap: 12px;
+    }
+
+    .hero-buttons .btn {
+        flex: 1 1 230px;
+        max-width: 340px;
+    }
+
+    .hero-logo-big {
+        max-width: 235px;
+    }
+
+    .section {
+        padding: 72px 20px;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+
+    .section-subtitle {
+        font-size: 16px;
+    }
+
+    .cards-grid,
+    .flow-grid,
+    .devices-grid,
+    .before-after-grid,
+    .diff-grid,
+    .steps,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .final-cta {
+        padding: 48px 20px;
+    }
+
+    .final-cta h2 {
+        font-size: 29px;
+    }
+
+    .whats-float {
+        right: 16px;
+        bottom: 16px;
+        width: 56px;
+        height: 56px;
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 104px 16px 52px;
+    }
+
+    .hero-content h1 {
+        font-size: 29px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: none;
+        flex: none;
+    }
+
+    .hero-logo-big {
+        max-width: 205px;
+    }
+
+    .header-actions .btn-entrar {
+        padding: 9px 14px;
+    }
+
+    .header-actions .btn-entrar i {
+        margin: 0;
+    }
+
+    .section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .card,
+    .flow-step,
+    .device-card {
+        width: 100%;
+    }
+}
     </style>
 </head>
 
