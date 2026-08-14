@@ -824,6 +824,26 @@
             position: relative;
             z-index: 1;
         }
+        .card-art {
+    position: absolute;
+    right: -20px;
+    bottom: -12px;
+    width: 68%;
+    height: 92%;
+    object-fit: contain;
+    object-position: right bottom;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+.card:hover .card-art {
+    opacity: 0.30;
+    transform: scale(1.06) translateX(-4px);
+}
 
         .cards-hint {
             margin-top: 28px;
