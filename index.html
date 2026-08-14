@@ -1455,6 +1455,25 @@
         .footer-contact a:hover {
             color: #60A5FA;
         }
+        .instagram-link i {
+    font-size: 19px;
+    background: linear-gradient(
+        45deg,
+        #FEDA75,
+        #FA7E1E,
+        #D62976,
+        #962FBF,
+        #4F5BD5
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.instagram-link:hover i {
+    transform: scale(1.2);
+}
 
         .footer-bottom {
             max-width: 1280px;
@@ -2669,7 +2688,7 @@
     href="https://www.instagram.com/conruja?utm_source=qr"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="Instagram do Conruja"
+    class="instagram-link"
 >
     <i class="fab fa-instagram"></i>
     Conruja
