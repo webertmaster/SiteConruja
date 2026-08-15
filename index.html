@@ -3495,6 +3495,44 @@ html[data-theme="light"] .theme-toggle {
         fadeUps.forEach(element => {
             observer.observe(element);
         });
+        /* Alternar entre modo claro e escuro */
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('i');
+
+function updateThemeIcon(theme) {
+    if (theme === 'light') {
+        themeIcon.className = 'fas fa-sun';
+        themeToggle.title = 'Ativar modo escuro';
+    } else {
+        themeIcon.className = 'fas fa-moon';
+        themeToggle.title = 'Ativar modo claro';
+    }
+}
+
+const savedTheme = localStorage.getItem('conruja-theme') || 'dark';
+
+document.documentElement.setAttribute(
+    'data-theme',
+    savedTheme
+);
+
+updateThemeIcon(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme =
+        document.documentElement.getAttribute('data-theme');
+
+    const newTheme =
+        currentTheme === 'light' ? 'dark' : 'light';
+
+    document.documentElement.setAttribute(
+        'data-theme',
+        newTheme
+    );
+
+    localStorage.setItem('conruja-theme', newTheme);
+    updateThemeIcon(newTheme);
+});
     </script>
 </body>
 </html>
