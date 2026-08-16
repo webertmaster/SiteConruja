@@ -3709,6 +3709,36 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('conruja-theme', newTheme);
     updateThemeIcon(newTheme);
 });
+/* Abrir e fechar as perguntas do FAQ */
+const faqQuestions =
+    document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+    question.setAttribute('aria-expanded', 'false');
+
+    question.addEventListener('click', () => {
+        const selectedItem =
+            question.closest('.faq-item');
+
+        const wasActive =
+            selectedItem.classList.contains('active');
+
+        document
+            .querySelectorAll('.faq-item.active')
+            .forEach(item => {
+                item.classList.remove('active');
+
+                item
+                    .querySelector('.faq-question')
+                    .setAttribute('aria-expanded', 'false');
+            });
+
+        if (!wasActive) {
+            selectedItem.classList.add('active');
+            question.setAttribute('aria-expanded', 'true');
+        }
+    });
+});
     </script>
 </body>
 </html>
