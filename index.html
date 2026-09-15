@@ -4503,7 +4503,7 @@ const pricingRules = {
     completo: {
         name: 'Plano Completo',
         below30: 17,
-        from30: 15
+        from30: 16
     }
 };
 
@@ -4534,7 +4534,7 @@ function calculateMonthlyPrice() {
         return;
     }
 
-    const unitPrice = quantity < 30
+    const unitPrice = quantity < 40
         ? plan.below30
         : plan.from30;
     const calculatedPrice = quantity * unitPrice;
