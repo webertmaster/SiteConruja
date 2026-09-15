@@ -2263,6 +2263,472 @@ html[data-theme="light"] .faq-item.active {
         font-size: 14px;
     }
 }
+        /* =========================
+   PLANOS E CALCULADORA
+========================= */
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    gap: 24px;
+    margin-top: 52px;
+}
+
+.plan-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 34px 28px 30px;
+    overflow: hidden;
+    background: linear-gradient(
+        145deg,
+        rgba(18, 42, 72, 0.92),
+        rgba(8, 26, 48, 0.84)
+    );
+    border: 1px solid rgba(148, 184, 220, 0.18);
+    border-radius: var(--radius-2xl);
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.plan-card::before {
+    content: '';
+    position: absolute;
+    top: -130px;
+    right: -120px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(
+        circle,
+        rgba(59, 130, 246, 0.20),
+        transparent 68%
+    );
+}
+
+.plan-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(59, 130, 246, 0.55);
+    box-shadow:
+        0 28px 55px -24px rgba(0, 0, 0, 0.75),
+        0 0 45px -20px rgba(59, 130, 246, 0.55);
+}
+
+.plan-card.featured {
+    border: 2px solid rgba(59, 130, 246, 0.72);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(37, 99, 235, 0.20),
+            rgba(14, 36, 67, 0.90)
+        ),
+        linear-gradient(
+            145deg,
+            rgba(18, 42, 72, 0.92),
+            rgba(8, 26, 48, 0.84)
+        );
+    box-shadow: 0 24px 55px -30px rgba(59, 130, 246, 0.8);
+}
+
+.plan-highlight {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    padding: 5px 11px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.plan-icon {
+    position: relative;
+    z-index: 1;
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    border-radius: 17px;
+    font-size: 24px;
+    animation: iconFloat 4s ease-in-out infinite;
+}
+
+.plan-icon.basic {
+    color: #38BDF8;
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+}
+
+.plan-icon.intermediate {
+    color: #60A5FA;
+    background: rgba(59, 130, 246, 0.16);
+    border: 1px solid rgba(59, 130, 246, 0.34);
+}
+
+.plan-icon.complete {
+    color: #FBBF24;
+    background: rgba(245, 158, 11, 0.14);
+    border: 1px solid rgba(245, 158, 11, 0.30);
+}
+
+.plan-name {
+    position: relative;
+    z-index: 1;
+    color: #94A3B8;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.plan-card h3 {
+    position: relative;
+    z-index: 1;
+    margin-top: 8px;
+    color: var(--white);
+    font-size: 29px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+}
+
+.plan-price-label {
+    position: relative;
+    z-index: 1;
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.plan-card ul {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 28px 0;
+    list-style: none;
+}
+
+.plan-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #CBD5E1;
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.plan-card li i {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: #34D399;
+    font-size: 14px;
+}
+
+.plan-card .btn {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.btn-plan {
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #3B82F6, #2563EB);
+    box-shadow: 0 14px 30px -15px rgba(59, 130, 246, 0.75);
+}
+
+.btn-plan:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 38px -15px rgba(59, 130, 246, 0.9);
+}
+
+/* Caixa da calculadora */
+
+.calculator-box {
+    width: 100%;
+    max-width: 960px;
+    margin: 60px auto 0;
+    padding: 38px;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(59, 130, 246, 0.18),
+            transparent 36%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(18, 42, 72, 0.94),
+            rgba(8, 26, 48, 0.90)
+        );
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 30px 65px -35px rgba(0, 0, 0, 0.8);
+}
+
+.calculator-intro {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.calculator-icon {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: rgba(59, 130, 246, 0.16);
+    border: 1px solid rgba(59, 130, 246, 0.32);
+    color: #60A5FA;
+    font-size: 25px;
+}
+
+.calculator-intro h3 {
+    color: var(--white);
+    font-size: 25px;
+    font-weight: 850;
+    letter-spacing: -0.5px;
+}
+
+.calculator-intro p {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.calculator-fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #CBD5E1;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    outline: none;
+    border: 1px solid rgba(148, 184, 220, 0.22);
+    border-radius: 13px;
+    background: rgba(4, 18, 35, 0.72);
+    color: #E2E8F0;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.form-group input::placeholder {
+    color: #64748B;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select option {
+    color: #E2E8F0;
+    background: #0F2440;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #3B82F6;
+    background: rgba(8, 29, 55, 0.90);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.13);
+}
+
+.calculator-result {
+    margin: 26px 0 22px;
+    padding: 22px;
+    text-align: center;
+    border: 1px solid rgba(52, 211, 153, 0.30);
+    border-radius: 17px;
+    background: rgba(16, 185, 129, 0.08);
+}
+
+.calculator-result span {
+    display: block;
+    color: #A7F3D0;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.calculator-result strong {
+    display: block;
+    margin: 5px 0;
+    color: #34D399;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.calculator-result p {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.calculator-box .btn-whats {
+    width: 100%;
+    margin-top: 26px;
+}
+
+.calculator-result:not([hidden]) + .btn-whats {
+    margin-top: 0;
+}
+
+.calculator-note {
+    margin-top: 14px;
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+/* Planos no modo claro */
+
+html[data-theme="light"] .plan-card,
+html[data-theme="light"] .calculator-box {
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(59, 130, 246, 0.10),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(241, 245, 249, 0.96)
+        );
+    border-color: rgba(59, 130, 246, 0.20);
+    box-shadow: 0 18px 42px -28px rgba(15, 23, 42, 0.35);
+}
+
+html[data-theme="light"] .plan-card.featured {
+    border-color: rgba(59, 130, 246, 0.60);
+}
+
+html[data-theme="light"] .plan-card li,
+html[data-theme="light"] .form-group label {
+    color: #334155;
+}
+
+html[data-theme="light"] .form-group input,
+html[data-theme="light"] .form-group select {
+    color: #1E293B;
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(15, 23, 42, 0.16);
+}
+
+html[data-theme="light"] .form-group select option {
+    color: #1E293B;
+    background: #FFFFFF;
+}
+
+html[data-theme="light"] .form-group input:focus,
+html[data-theme="light"] .form-group select:focus {
+    background: #FFFFFF;
+}
+
+html[data-theme="light"] .calculator-result {
+    background: rgba(16, 185, 129, 0.10);
+}
+
+html[data-theme="light"] .calculator-result span {
+    color: #047857;
+}
+
+/* Responsividade dos planos */
+
+@media (max-width: 900px) {
+    .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .calculator-box {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 650px) {
+    .plans-grid {
+        margin-top: 38px;
+    }
+
+    .plan-card {
+        padding: 30px 22px 26px;
+    }
+
+    .calculator-box {
+        margin-top: 42px;
+        padding: 25px 18px;
+    }
+
+    .calculator-intro {
+        align-items: flex-start;
+    }
+
+    .calculator-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 15px;
+        font-size: 21px;
+    }
+
+    .calculator-intro h3 {
+        font-size: 21px;
+    }
+
+    .calculator-fields {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .calculator-result strong {
+        font-size: 30px;
+    }
+
+    .calculator-box .btn-whats {
+        padding-left: 18px;
+        padding-right: 18px;
+        font-size: 14px;
+    }
+}
     </style>
 </head>
 
@@ -2660,6 +3126,228 @@ html[data-theme="light"] .faq-item.active {
             </p>
         </div>
     </section>
+    <section class="section section-alt" id="planos">
+    <div class="section-inner">
+        <div class="text-center">
+            <span class="section-badge">Planos Conruja</span>
+
+            <h2 class="section-title">
+                Escolha o plano ideal para seu condomínio
+            </h2>
+
+            <p class="section-subtitle mx-auto">
+                O valor é calculado de acordo com a quantidade de
+                apartamentos, com mensalidade mínima de R$ 250.
+            </p>
+        </div>
+
+        <div class="plans-grid">
+            <article class="plan-card fade-up">
+                <div class="plan-icon basic">
+                    <i class="fas fa-building"></i>
+                </div>
+
+                <span class="plan-name">Plano Básico</span>
+
+                <h3>A partir de R$ 9</h3>
+                <p class="plan-price-label">por apartamento/mês</p>
+
+                <ul>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        De 1 a 29 apartamentos: R$ 10 por unidade
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        A partir de 30 apartamentos: R$ 9 por unidade
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Mensalidade mínima de R$ 250
+                    </li>
+                </ul>
+
+                <button
+                    class="btn btn-outline select-plan"
+                    type="button"
+                    data-plan="basico"
+                >
+                    Calcular este plano
+                </button>
+            </article>
+
+            <article class="plan-card featured fade-up">
+                <span class="plan-highlight">Mais escolhido</span>
+
+                <div class="plan-icon intermediate">
+                    <i class="fas fa-star"></i>
+                </div>
+
+                <span class="plan-name">Plano Intermediário</span>
+
+                <h3>A partir de R$ 13</h3>
+                <p class="plan-price-label">por apartamento/mês</p>
+
+                <ul>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        De 1 a 29 apartamentos: R$ 14 por unidade
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        A partir de 30 apartamentos: R$ 13 por unidade
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Mensalidade mínima de R$ 250
+                    </li>
+                </ul>
+
+                <button
+                    class="btn btn-plan select-plan"
+                    type="button"
+                    data-plan="intermediario"
+                >
+                    Calcular este plano
+                </button>
+            </article>
+
+            <article class="plan-card fade-up">
+                <div class="plan-icon complete">
+                    <i class="fas fa-crown"></i>
+                </div>
+
+                <span class="plan-name">Plano Completo</span>
+
+                <h3>A partir de R$ 15</h3>
+                <p class="plan-price-label">por apartamento/mês</p>
+
+                <ul>
+                    <li>
+                        <i class="fas fa-check"></i>
+                        De 1 a 29 apartamentos: R$ 17 por unidade
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        A partir de 30 apartamentos: R$ 15 por unidade
+                    </li>
+
+                    <li>
+                        <i class="fas fa-check"></i>
+                        Mensalidade mínima de R$ 250
+                    </li>
+                </ul>
+
+                <button
+                    class="btn btn-outline select-plan"
+                    type="button"
+                    data-plan="completo"
+                >
+                    Calcular este plano
+                </button>
+            </article>
+        </div>
+
+        <div class="calculator-box fade-up" id="calculadora">
+            <div class="calculator-intro">
+                <span class="calculator-icon">
+                    <i class="fas fa-calculator"></i>
+                </span>
+
+                <div>
+                    <h3>Calcule sua mensalidade</h3>
+
+                    <p>
+                        Preencha os dados e veja uma estimativa instantânea.
+                    </p>
+                </div>
+            </div>
+
+            <form id="planCalculator">
+                <div class="calculator-fields">
+                    <div class="form-group">
+                        <label for="condominioName">
+                            Nome do condomínio
+                        </label>
+
+                        <input
+                            type="text"
+                            id="condominioName"
+                            placeholder="Ex.: Residencial Ponta Negra"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmail">E-mail</label>
+
+                        <input
+                            type="email"
+                            id="contactEmail"
+                            placeholder="seuemail@exemplo.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apartmentQuantity">
+                            Quantidade de apartamentos
+                        </label>
+
+                        <input
+                            type="number"
+                            id="apartmentQuantity"
+                            placeholder="Ex.: 80"
+                            min="1"
+                            step="1"
+                            inputmode="numeric"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectedPlan">Plano desejado</label>
+
+                        <select id="selectedPlan" required>
+                            <option value="">Selecione um plano</option>
+                            <option value="basico">Plano Básico</option>
+                            <option value="intermediario">
+                                Plano Intermediário
+                            </option>
+                            <option value="completo">Plano Completo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div
+                    class="calculator-result"
+                    id="calculatorResult"
+                    aria-live="polite"
+                    hidden
+                >
+                    <span>Valor mensal estimado</span>
+                    <strong id="monthlyPrice">R$ 0,00</strong>
+                    <p id="calculationDetails"></p>
+                </div>
+
+                <button class="btn btn-whats btn-lg" type="submit">
+                    <i class="fab fa-whatsapp"></i>
+                    Solicitar proposta pelo WhatsApp
+                </button>
+
+                <p class="calculator-note">
+                    O valor apresentado é uma estimativa e poderá ser
+                    confirmado pela equipe do Conruja.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
         <section class="section section-alt" id="simples">
         <div class="section-inner">
             <div class="text-center">
@@ -3773,6 +4461,217 @@ faqQuestions.forEach(question => {
             question.setAttribute('aria-expanded', 'true');
         }
     });
+});
+        /* =========================
+   CALCULADORA DOS PLANOS
+========================= */
+
+const PRICING_RULES = {
+    basico: {
+        name: 'Plano Básico',
+        below30: 10,
+        from30: 9
+    },
+
+    intermediario: {
+        name: 'Plano Intermediário',
+        below30: 14,
+        from30: 13
+    },
+
+    completo: {
+        name: 'Plano Completo',
+        below30: 17,
+        from30: 15
+    }
+};
+
+const MINIMUM_MONTHLY_PRICE = 250;
+
+const planCalculator =
+    document.getElementById('planCalculator');
+
+const apartmentQuantity =
+    document.getElementById('apartmentQuantity');
+
+const selectedPlan =
+    document.getElementById('selectedPlan');
+
+const calculatorResult =
+    document.getElementById('calculatorResult');
+
+const monthlyPrice =
+    document.getElementById('monthlyPrice');
+
+const calculationDetails =
+    document.getElementById('calculationDetails');
+
+function formatCurrency(value) {
+    return value.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+}
+
+function calculatePlan() {
+    const quantity =
+        Number.parseInt(apartmentQuantity.value, 10);
+
+    const planId = selectedPlan.value;
+    const plan = PRICING_RULES[planId];
+
+    if (!plan || !Number.isInteger(quantity) || quantity < 1) {
+        calculatorResult.hidden = true;
+        return null;
+    }
+
+    const pricePerApartment =
+        quantity < 30
+            ? plan.below30
+            : plan.from30;
+
+    const subtotal = quantity * pricePerApartment;
+
+    const finalPrice = Math.max(
+        subtotal,
+        MINIMUM_MONTHLY_PRICE
+    );
+
+    const minimumApplied =
+        subtotal < MINIMUM_MONTHLY_PRICE;
+
+    monthlyPrice.textContent =
+        formatCurrency(finalPrice);
+
+    if (minimumApplied) {
+        calculationDetails.textContent =
+            `${quantity} apartamentos × ` +
+            `${formatCurrency(pricePerApartment)}. ` +
+            `Aplicada a mensalidade mínima de ` +
+            `${formatCurrency(MINIMUM_MONTHLY_PRICE)}.`;
+    } else {
+        calculationDetails.textContent =
+            `${quantity} apartamentos × ` +
+            `${formatCurrency(pricePerApartment)} por unidade.`;
+    }
+
+    calculatorResult.hidden = false;
+
+    return {
+        quantity,
+        planId,
+        planName: plan.name,
+        pricePerApartment,
+        subtotal,
+        finalPrice,
+        minimumApplied
+    };
+}
+
+/* Atualizar o resultado ao preencher os campos */
+
+apartmentQuantity.addEventListener(
+    'input',
+    calculatePlan
+);
+
+selectedPlan.addEventListener(
+    'change',
+    calculatePlan
+);
+
+/* Botões dos cards dos planos */
+
+document
+    .querySelectorAll('.select-plan')
+    .forEach(button => {
+        button.addEventListener('click', () => {
+            selectedPlan.value =
+                button.dataset.plan;
+
+            calculatePlan();
+
+            document
+                .getElementById('calculadora')
+                .scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+            setTimeout(() => {
+                apartmentQuantity.focus();
+            }, 500);
+        });
+    });
+
+/* Enviar a proposta para o WhatsApp */
+
+planCalculator.addEventListener('submit', event => {
+    event.preventDefault();
+
+    if (!planCalculator.checkValidity()) {
+        planCalculator.reportValidity();
+        return;
+    }
+
+    const calculation = calculatePlan();
+
+    if (!calculation) {
+        return;
+    }
+
+    const condominiumName =
+        document
+            .getElementById('condominioName')
+            .value
+            .trim();
+
+    const contactEmail =
+        document
+            .getElementById('contactEmail')
+            .value
+            .trim();
+
+    const minimumMessage =
+        calculation.minimumApplied
+            ? `Sim — mínimo de ${
+                formatCurrency(MINIMUM_MONTHLY_PRICE)
+            }`
+            : 'Não';
+
+    const message = [
+        'Olá! Gostaria de receber uma proposta do Conruja.',
+        '',
+        `Condomínio: ${condominiumName}`,
+        `E-mail: ${contactEmail}`,
+        `Plano: ${calculation.planName}`,
+        `Quantidade de apartamentos: ${calculation.quantity}`,
+        `Valor por apartamento: ${
+            formatCurrency(calculation.pricePerApartment)
+        }`,
+        `Subtotal: ${
+            formatCurrency(calculation.subtotal)
+        }`,
+        `Mensalidade mínima aplicada: ${minimumMessage}`,
+        `Valor mensal estimado: ${
+            formatCurrency(calculation.finalPrice)
+        }`,
+        '',
+        'Gostaria de receber mais informações sobre este plano.'
+    ].join('\n');
+
+    const whatsappNumber = '5584921461740';
+
+    const whatsappUrl =
+        `https://wa.me/${whatsappNumber}?text=` +
+        encodeURIComponent(message);
+
+    const whatsappWindow =
+        window.open(whatsappUrl, '_blank');
+
+    if (whatsappWindow) {
+        whatsappWindow.opener = null;
+    }
 });
     </script>
 </body>
