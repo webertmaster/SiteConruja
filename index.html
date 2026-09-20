@@ -4517,14 +4517,27 @@ const pricingRules = {
     }
 };
 
-const minimumMonthlyPrice = 300;
-const planCards = document.querySelectorAll('[data-plan-card]');
-const apartmentInput = document.getElementById('apartmentQuantity');
-const selectedPlanName = document.getElementById('selectedPlanName');
-const calculatorResult = document.getElementById('calculatorResult');
-const monthlyPrice = document.getElementById('monthlyPrice');
-const calculationDetails = document.getElementById('calculationDetails');
-const calculatorWhatsapp = document.getElementById('calculatorWhatsapp');
+const planCards =
+    document.querySelectorAll('[data-plan-card]');
+
+const apartmentInput =
+    document.getElementById('apartmentQuantity');
+
+const selectedPlanName =
+    document.getElementById('selectedPlanName');
+
+const calculatorResult =
+    document.getElementById('calculatorResult');
+
+const monthlyPrice =
+    document.getElementById('monthlyPrice');
+
+const calculationDetails =
+    document.getElementById('calculationDetails');
+
+const calculatorWhatsapp =
+    document.getElementById('calculatorWhatsapp');
+
 let chosenPlanId = '';
 
 function formatPlanCurrency(value) {
@@ -4535,10 +4548,18 @@ function formatPlanCurrency(value) {
 }
 
 function calculateMonthlyPrice() {
-    const quantity = Number.parseInt(apartmentInput.value, 10);
+    const quantity = Number.parseInt(
+        apartmentInput.value,
+        10
+    );
+
     const plan = pricingRules[chosenPlanId];
 
-    if (!plan || !Number.isInteger(quantity) || quantity < 1) {
+    if (
+        !plan ||
+        !Number.isInteger(quantity) ||
+        quantity < 1
+    ) {
         calculatorResult.hidden = true;
         calculatorWhatsapp.hidden = true;
         return;
@@ -4546,31 +4567,35 @@ function calculateMonthlyPrice() {
 
     const firstTierLimit = discountStart - 1;
 
-const firstTierUnits = Math.min(
-    quantity,
-    firstTierLimit
-);
+    const firstTierUnits = Math.min(
+        quantity,
+        firstTierLimit
+    );
 
-const secondTierUnits = Math.max(
-    quantity - firstTierLimit,
-    0
-);
+    const secondTierUnits = Math.max(
+        quantity - firstTierLimit,
+        0
+    );
 
-const calculatedPrice =
-    (firstTierUnits * plan.firstTier) +
-    (secondTierUnits * plan.secondTier);
+    const calculatedPrice =
+        (firstTierUnits * plan.firstTier) +
+        (secondTierUnits * plan.secondTier);
 
-const finalPrice = Math.max(
-    calculatedPrice,
-    minimumMonthlyPrice
-);
-    monthlyPrice.textContent = formatPlanCurrency(finalPrice);
+    const finalPrice = Math.max(
+        calculatedPrice,
+        minimumMonthlyPrice
+    );
+
+    monthlyPrice.textContent =
+        formatPlanCurrency(finalPrice);
+
     const minimumApplied =
-    calculatedPrice < minimumMonthlyPrice;
+        calculatedPrice < minimumMonthlyPrice;
 
-calculationDetails.textContent = minimumApplied
-    ? `Aplicada a mensalidade mínima para ${quantity} apartamentos no ${plan.name}.`
-    : `Estimativa para ${quantity} apartamentos no ${plan.name}.`;
+    calculationDetails.textContent = minimumApplied
+        ? `Aplicada a mensalidade mínima para ${quantity} apartamentos no ${plan.name}.`
+        : `Estimativa para ${quantity} apartamentos no ${plan.name}.`;
+
     calculatorResult.hidden = false;
 
     const message = [
@@ -4586,6 +4611,7 @@ calculationDetails.textContent = minimumApplied
     calculatorWhatsapp.href =
         'https://wa.me/5584921461740?text=' +
         encodeURIComponent(message);
+
     calculatorWhatsapp.hidden = false;
 }
 
@@ -4598,29 +4624,43 @@ function selectPlan(planId) {
 
     chosenPlanId = planId;
     selectedPlanName.textContent = plan.name;
+
     apartmentInput.disabled = false;
     apartmentInput.placeholder = 'Ex.: 80';
 
     planCards.forEach(card => {
-        const isSelected = card.dataset.planCard === planId;
-        card.classList.toggle('selected', isSelected);
+        const cardPlanId = card.dataset.planCard;
 
-        const button = card.querySelector('.select-plan');
-        if (button) {
+        const isSelected =
+            cardPlanId === planId;
+
+        card.classList.toggle(
+            'selected',
+            isSelected
+        );
+
+        const button =
+            card.querySelector('.select-plan');
+
+        if (button && pricingRules[cardPlanId]) {
             button.textContent = isSelected
                 ? 'Plano selecionado'
-                : `Escolher ${pricingRules[card.dataset.planCard].name}`;
+                : `Escolher ${pricingRules[cardPlanId].name}`;
         }
     });
 
     calculateMonthlyPrice();
 
-    document.getElementById('calculadora').scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-    });
+    document
+        .getElementById('calculadora')
+        .scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
 
-    setTimeout(() => apartmentInput.focus(), 450);
+    setTimeout(() => {
+        apartmentInput.focus();
+    }, 450);
 }
 
 planCards.forEach(card => {
@@ -4629,7 +4669,10 @@ planCards.forEach(card => {
     });
 });
 
-apartmentInput.addEventListener('input', calculateMonthlyPrice);
+apartmentInput.addEventListener(
+    'input',
+    calculateMonthlyPrice
+);
     </script>
 </body>
 </html>
