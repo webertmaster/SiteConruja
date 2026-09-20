@@ -4493,27 +4493,28 @@ faqQuestions.forEach(question => {
     });
 });
 
-/* Planos e calculadora simplificada */
-const discountStart = 50;
+const discountStart = 50;         // 50ª unidade (2º nível)
+const secondDiscountStart = 100;  // 100ª unidade (3º nível)
 const minimumMonthlyPrice = 400;
 
 const pricingRules = {
     basico: {
         name: 'Plano Básico',
         firstTier: 11,
-        secondTier: 10
+        secondTier: 10,
+        thirdTier: 9      // acima de 100 unidades
     },
-
     intermediario: {
         name: 'Plano Intermediário',
         firstTier: 14,
-        secondTier: 13
+        secondTier: 13,
+        thirdTier: 12     // acima de 100 unidades
     },
-
     completo: {
         name: 'Plano Completo',
         firstTier: 17,
-        secondTier: 16
+        secondTier: 16,
+        thirdTier: 15     // acima de 100 unidades
     }
 };
 
@@ -4547,73 +4548,12 @@ function formatPlanCurrency(value) {
     });
 }
 
-function calculateMonthlyPrice() {
-    const quantity = Number.parseInt(
-        apartmentInput.value,
-        10
-    );
-
-    const plan = pricingRules[chosenPlanId];
-
-    if (
-        !plan ||
-        !Number.isInteger(quantity) ||
-        quantity < 1
-    ) {
-        calculatorResult.hidden = true;
-        calculatorWhatsapp.hidden = true;
-        return;
-    }
-
-    const firstTierLimit = discountStart - 1;
-
-    const firstTierUnits = Math.min(
-        quantity,
-        firstTierLimit
-    );
-
-    const secondTierUnits = Math.max(
-        quantity - firstTierLimit,
-        0
-    );
-
-    const calculatedPrice =
-        (firstTierUnits * plan.firstTier) +
-        (secondTierUnits * plan.secondTier);
-
-    const finalPrice = Math.max(
-        calculatedPrice,
-        minimumMonthlyPrice
-    );
-
-    monthlyPrice.textContent =
-        formatPlanCurrency(finalPrice);
-
-    const minimumApplied =
-        calculatedPrice < minimumMonthlyPrice;
-
-    calculationDetails.textContent = minimumApplied
-        ? `Aplicada a mensalidade mínima para ${quantity} apartamentos no ${plan.name}.`
-        : `Estimativa para ${quantity} apartamentos no ${plan.name}.`;
-
-    calculatorResult.hidden = false;
-
-    const message = [
-        'Olá! Gostaria de receber uma proposta do Conruja.',
-        '',
-        `Plano escolhido: ${plan.name}`,
-        `Quantidade de apartamentos: ${quantity}`,
-        `Valor mensal estimado: ${formatPlanCurrency(finalPrice)}`,
-        '',
-        'Pode me falar mais sobre este plano?'
-    ].join('\n');
-
-    calculatorWhatsapp.href =
-        'https://wa.me/5584921461740?text=' +
-        encodeURIComponent(message);
-
-    calculatorWhatsapp.hidden = false;
-}
+<p class="calculator-note">
+    Mensalidade mínima de R$ 400. A partir da 50ª unidade,
+    o valor por apartamento recebe desconto, com um novo
+    desconto acima de 100 unidades.
+    Valor sujeito à confirmação da equipe do Conruja.
+</p>
 
 function selectPlan(planId) {
     const plan = pricingRules[planId];
