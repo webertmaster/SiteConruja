@@ -4663,12 +4663,31 @@ function selectPlan(planId) {
     }, 450);
 }
 
+/* Selecionar clicando no card */
 planCards.forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', event => {
+        if (event.target.closest('.select-plan')) {
+            return;
+        }
+
         selectPlan(card.dataset.planCard);
     });
 });
 
+/* Selecionar clicando diretamente no botão */
+const planButtons =
+    document.querySelectorAll('.select-plan');
+
+planButtons.forEach(button => {
+    button.addEventListener('click', event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        selectPlan(button.dataset.plan);
+    });
+});
+
+/* Recalcular ao digitar a quantidade */
 apartmentInput.addEventListener(
     'input',
     calculateMonthlyPrice
