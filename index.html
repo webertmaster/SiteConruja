@@ -3367,9 +3367,14 @@ html[data-theme="light"] .selected-plan-box {
                 </a>
 
                 <p class="calculator-note">
-                    Mensalidade mínima de R$ 250. Valor sujeito à confirmação
-                    da equipe do Conruja.
-                </p>
+
+    Mensalidade mínima de R$ 350. A partir da 50ª unidade,
+
+    o valor adicional por apartamento recebe desconto.
+
+    Valor sujeito à confirmação da equipe do Conruja.
+
+</p>
             </div>
         </div>
     </section>
@@ -4489,21 +4494,26 @@ faqQuestions.forEach(question => {
 });
 
 /* Planos e calculadora simplificada */
+const discountStart = 50;
+const minimumMonthlyPrice = 350;
+
 const pricingRules = {
     basico: {
         name: 'Plano Básico',
-        below30: 10,
-        from30: 9
+        firstTier: 10,
+        secondTier: 9
     },
+
     intermediario: {
         name: 'Plano Intermediário',
-        below30: 14,
-        from30: 13
+        firstTier: 14,
+        secondTier: 13
     },
+
     completo: {
         name: 'Plano Completo',
-        below30: 17,
-        from30: 16
+        firstTier: 17,
+        secondTier: 16
     }
 };
 
@@ -4534,15 +4544,33 @@ function calculateMonthlyPrice() {
         return;
     }
 
-    const unitPrice = quantity < 40
-        ? plan.below30
-        : plan.from30;
-    const calculatedPrice = quantity * unitPrice;
-    const finalPrice = Math.max(calculatedPrice, minimumMonthlyPrice);
+    const firstTierLimit = discountStart - 1;
 
+const firstTierUnits = Math.min(
+    quantity,
+    firstTierLimit
+);
+
+const secondTierUnits = Math.max(
+    quantity - firstTierLimit,
+    0
+);
+
+const calculatedPrice =
+    (firstTierUnits * plan.firstTier) +
+    (secondTierUnits * plan.secondTier);
+
+const finalPrice = Math.max(
+    calculatedPrice,
+    minimumMonthlyPrice
+);
     monthlyPrice.textContent = formatPlanCurrency(finalPrice);
-    calculationDetails.textContent =
-        `Estimativa para ${quantity} apartamentos no ${plan.name}.`;
+    const minimumApplied =
+    calculatedPrice < minimumMonthlyPrice;
+
+calculationDetails.textContent = minimumApplied
+    ? `Aplicada a mensalidade mínima para ${quantity} apartamentos no ${plan.name}.`
+    : `Estimativa para ${quantity} apartamentos no ${plan.name}.`;
     calculatorResult.hidden = false;
 
     const message = [
